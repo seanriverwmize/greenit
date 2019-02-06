@@ -1,3 +1,14 @@
 // Place all the styles related to the links controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.collection-item{
+  text-align: left;
+}
+
+.collection .secondary-content{
+  padding: 0 20px;
+}
+
+.collection-item h2.title{
+  margin-top: 0;
+}

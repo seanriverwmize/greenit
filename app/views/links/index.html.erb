@@ -1,28 +1,31 @@
 <h1>Links</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title <i class="material-icons">code</i></th>
-      <th>Url</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @links.each do |link| %>
+  <ul class="collection">
+    <li class="collection-item">
+      <%= link_to link do %>
+        <h2 class="title"><%= link.title %></h2>
+      <% end %>
+      <p>Created by <%= link.user.email %> <br>
+         <% if link.user == current_user %>
+           <td><%= link_to 'Edit', edit_link_path(link) %></td>
+           <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <% end %>
+      </p>
 
-  <tbody>
-    <% @links.each do |link| %>
-      <tr>
-        <td><%= link.title %></td>
-        <td><%= link.url %></td>
-        <td><%= link_to 'Show', link %></td>
-        <% if link.user == current_user %>
-          <td><%= link_to 'Edit', edit_link_path(link) %></td>
-          <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <%=link_to downvote_link_path(link), method: :put, class: 'secondary-content' do %>
+        <i class="material-icons">arrow_downward</i><span>
+      <% end %>
+
+      <div class="secondary-content"><%= link.get_likes.size - link.get_dislikes.size %></div>
+
+      <%=link_to upvote_link_path(link), method: :put, class: 'secondary-content' do %>
+        <i class="material-icons">arrow_upward</i><span>
+      <% end %>
+
+    </li>
+  </ul>
+<% end %>
 
 <br>
 
