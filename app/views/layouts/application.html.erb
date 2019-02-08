@@ -4,8 +4,8 @@
     <title>Greenit</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
@@ -13,9 +13,8 @@
       <nav>
         <div class="nav-wrapper">
           <%= link_to 'Green-it </>', root_path, class: 'brand-logo' %>
-
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-
+            <li><%= link_to 'Hottest Links', root_path %>
             <% if user_signed_in? %>
               <li><%= link_to 'Create a Post', new_link_path %></li>
               <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
@@ -32,13 +31,32 @@
               <i class="material-icons">close</i>
             </div>
           <% end %>
+          <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         </div>
       </nav>
+
     </div>
+    <ul id="slide-out" class="sidenav">
+      <li><%= link_to 'Hottest Links', root_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to 'Create a Post', new_link_path %></li>
+        <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to 'Account', edit_user_registration_path %></li>
+      <% else %>
+        <li><%= link_to 'Sign in', new_user_session_path %></li>
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+      <% end %>
+    </ul>
+
+
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %> </p>
     <div class="parent-div">
       <%= yield %>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>
