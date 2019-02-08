@@ -6,7 +6,7 @@
       <%= link_to link do %>
         <h2 class="title"><%= link.title %></h2>
       <% end %>
-      <p>Created by <%= link.user.email %> <br>
+      <p>Created by <%= link.user.name %> about <%= time_ago_in_words(link.created_at) %> ago<br>
          <% if link.user == current_user %>
            <td><%= link_to 'Edit', edit_link_path(link) %></td>
            <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>

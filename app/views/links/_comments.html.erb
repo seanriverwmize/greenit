@@ -1,0 +1,10 @@
+<div class="comments">
+  <ul class="collection">
+    <% @comments.each do |comment| %>
+
+      <li class="collection-item"><p class="comment-age-tag">Posted by <%= comment.user.name%> about <%= time_ago_in_words(comment.created_at)%> ago</p> <br>
+        <p class="comment-body"><%= comment.body %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>

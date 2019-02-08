@@ -9,26 +9,34 @@
   </head>
 
   <body>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <%= link_to 'Green-it </>', root_path, class: 'brand-logo' %>
+
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+            <% if user_signed_in? %>
+              <li><%= link_to 'Create a Post', new_link_path %></li>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to 'Account', edit_user_registration_path %></li>
+            <% else %>
+              <li><%= link_to 'Sign in', new_user_session_path %></li>
+              <li><%= link_to 'Sign up', new_user_registration_path %></li>
+            <% end %>
+          </ul>
+          <%= form_tag(links_path, method: :get, class: 'search-form hide-on-med-and-down', autocomplete: 'off') do %>
+            <div class="input-field" id="search-field-wrapper">
+              <%= text_field_tag :term, params[:term], required: true, class: 'search-field', type: 'search' %>
+              <label class="label-icon" for="term"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          <% end %>
+        </div>
+      </nav>
+    </div>
     <p id="notice"><%= notice %></p>
     <p id="alert"><%= alert %> </p>
-
-
-
-    <nav>
-      <div class="nav-wrapper">
-        <%= link_to 'Green-It', root_path, class: 'brand-logo' %>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <% if user_signed_in? %>
-            <li><%= link_to 'Create a Post', new_link_path %>
-            <li><%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %></li>
-            <li><%= link_to 'Account', edit_user_registration_path %>
-          <% else %>
-            <li><%= link_to 'Sign in', new_user_session_path %></li>
-            <li><%= link_to 'Sign up', new_user_registration_path %></li>
-          <% end %>
-        </ul>
-      </div>
-    </nav>
     <div class="parent-div">
       <%= yield %>
     </div>

@@ -4,12 +4,13 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = Link.search(params[:term])
   end
 
   # GET /links/1
   # GET /links/1.json
   def show
+    @comments = @link.comments
   end
 
   # GET /links/new

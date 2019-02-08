@@ -1,12 +1,28 @@
-<p>
-  <strong>Title:</strong>
-  <%= @link.title %>
-</p>
 
-<p>
+
+<h1>
+  <%= @link.title %>
+</h1>
+
+<div class="show-link-d">
   <strong>Url:</strong>
-  <%= @link.url %>
-</p>
+  <%= link_to @link.url, @link.url %>
+  <br>
+  <div class="show-votes">
+    <%=link_to downvote_link_path(@link), method: :put, class: 'vote-icon' do %>
+      <i class="material-icons">arrow_downward</i><span>
+    <% end %>
+
+    <span><%= @link.get_likes.size - @link.get_dislikes.size %></span>
+
+    <%=link_to upvote_link_path(@link), method: :put, class: 'vote-icon' do %>
+      <i class="material-icons">arrow_upward</i><span>
+    <% end %>
+  </div>
+</div>
+<%= render 'comment_form' %>
+<%= render 'comments' %>
+
 
 <%= link_to 'Edit', edit_link_path(@link) %> |
 <%= link_to 'Back', links_path %>

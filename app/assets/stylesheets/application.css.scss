@@ -16,7 +16,15 @@
 @import "materialize";
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 
+body{
+  margin: 0px;
+}
+
 .parent-div{
   width: 90%;
   margin: 0 auto;
+}
+
+.btn{
+  margin: 10px auto;
 }
